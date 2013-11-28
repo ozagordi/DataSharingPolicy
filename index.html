@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Data sharing policy</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Data sharing policy">
+  <meta name="author" content="">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+    <link rel="stylesheet" href = "assets/css/ribbons.css">
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+    <!-- END LOGO SLIDE -->
+    
+
+    <!-- TITLE SLIDE -->
+    <!-- Should I move this to a Local Layout File? -->
+    <slide class="title-slide segue nobackground">
+      <hgroup class="auto-fadein">
+        <h1>Data sharing policy</h1>
+        <h2></h2>
+        <p><br/></p>
+      </hgroup>
+          </slide>
+
+    <!-- SLIDES -->
+      <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h1>Title</h1>
+  </hgroup>
+  <article>
+    <p>Adapted from <a href="https://github.com/jtleek/datasharing">How to share data with a statistician</a> by Jeff Leek</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="" id="slide-2" style="background:;">
+  <hgroup>
+    <h2>Why prescribe how to share data</h2>
+  </hgroup>
+  <article>
+    <ol>
+<li>Because it influences speed (and speed matters)</li>
+<li>Helps you and the statistician better understanding data</li>
+<li>Reduces errors and iterations (did we say speed matters?)</li>
+<li>Improves reproducibility</li>
+<li>Helps communicating</li>
+<li>Makes the life of the statistician <strong>much</strong> easier</li>
+</ol>
+
+<hr>
+
+<h2>What you should deliver and why</h2>
+
+<ol>
+<li>The raw data: because it&#39;s the most trustable source.</li>
+<li>A tidy data set: because it is directly processable, more on this later.</li>
+<li>A code book describing each variable and its values in the tidy data set: it reduces errors, helps understanding, enforces reproducibility.</li>
+<li>An explicit and exact recipe you used to go from 1 -&gt; 2,3</li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>The raw data</h2>
+  </hgroup>
+  <article>
+    <p>Examples:</p>
+
+<ol>
+<li>FACS output (the <code>.fcs</code> file, before using Flowjow or anything else).</li>
+<li>The <code>.csv</code> or <code>.txt</code> file from the plate reader (<strong>before</strong> loading into Excel).</li>
+<li>Microscopy <code>.tiff</code> images.</li>
+<li>NGS sequences in <code>.fastq</code> format</li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Raw means:</h2>
+  </hgroup>
+  <article>
+    <ol>
+<li>No software analysis</li>
+<li>No manipulation/removal of data</li>
+<li>Data were not summarised</li>
+</ol>
+
+<p>If manipulated data is reported as raw, the statistician has to perform an extra autopsy to find out what went wrong.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="" id="slide-5" style="background:;">
+  <hgroup>
+    <h2>Tidy data set</h2>
+  </hgroup>
+  <article>
+    <p>A tidy data set follows two fundamental principles:</p>
+
+<ol>
+<li>Measured variables on the columns</li>
+<li>Single observations of the variables on the rows</li>
+</ol>
+
+<p>Moreover, use different tables for different types of variables (no Excel worksheet) and use ids to link different tables.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="" id="slide-6" style="background:;">
+  <hgroup>
+    <h2>Example of a tidy data set</h2>
+  </hgroup>
+  <article>
+    <p>Observation of incidence of diabetes Clinical observation</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+
+  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+<!-- Grab CDN jQuery, fall back to local if offline -->
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+<script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery-1.7.min.js"><\/script>')</script>
+<!-- Load Javascripts for Widgets -->
+<!-- LOAD HIGHLIGHTER JS FILES -->
+<script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<!-- DONE LOADING HIGHLIGHTER JS FILES -->
+</html>
