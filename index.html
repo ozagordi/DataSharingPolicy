@@ -4,7 +4,7 @@
   <title>Data sharing policy</title>
   <meta charset="utf-8">
   <meta name="description" content="Data sharing policy">
-  <meta name="author" content="">
+  <meta name="author" content="CM OZ">
   <meta name="generator" content="slidify" />
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta http-equiv="X-UA-Compatible" content="chrome=1">
@@ -33,18 +33,22 @@
     <slide class="title-slide segue nobackground">
       <hgroup class="auto-fadein">
         <h1>Data sharing policy</h1>
-        <h2></h2>
-        <p><br/></p>
+        <h2>Adapted from &quot;How to share data with a statistician&quot;</h2>
+        <p>CM OZ<br/>Institute of Medical Virology, University of Zurich</p>
       </hgroup>
           </slide>
 
     <!-- SLIDES -->
       <slide class="" id="slide-1" style="background:;">
   <hgroup>
-    <h1>Title</h1>
+    <h1>Introduction</h1>
   </hgroup>
   <article>
-    <p>Adapted from <a href="https://github.com/jtleek/datasharing">How to share data with a statistician</a> by Jeff Leek</p>
+    <p>Adaptation of
+<a href="https://github.com/jtleek/datasharing">How to share data with a statistician</a>
+by Jeff Leek</p>
+
+<p>Available on <a href="https://github.com/ozagordi/DataSharingPolicy">GitHub</a></p>
 
   </article>
   <!-- Presenter Notes -->
@@ -55,31 +59,47 @@
     <h2>Why prescribe how to share data</h2>
   </hgroup>
   <article>
-    <ol>
-<li>Because it influences speed (and speed matters)</li>
-<li>Helps you and the statistician better understanding data</li>
-<li>Reduces errors and iterations (did we say speed matters?)</li>
-<li>Improves reproducibility</li>
-<li>Helps communicating</li>
-<li>Makes the life of the statistician <strong>much</strong> easier</li>
-</ol>
+    <p><strong>Chiefly, because it takes more time to make sense of messy data.</strong></p>
 
-<hr>
-
-<h2>What you should deliver and why</h2>
+<p>Moreover:</p>
 
 <ol>
-<li>The raw data: because it&#39;s the most trustable source.</li>
-<li>A tidy data set: because it is directly processable, more on this later.</li>
-<li>A code book describing each variable and its values in the tidy data set: it reduces errors, helps understanding, enforces reproducibility.</li>
-<li>An explicit and exact recipe you used to go from 1 -&gt; 2,3</li>
+<li>Reduces errors and iterations (and more iterations means more time)</li>
+<li>Improves reproducibility (should your analysis be questioned)</li>
+<li>Helps communicating</li>
 </ol>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-3" style="background:;">
+      <slide class="" id="slide-3">
+<hgroup>
+  <h2>..and above all</h2>
+</hgroup>
+<article class = 'flexbox vcenter'>
+<h3>It makes the life of the statistician much easier</h3>
+
+</article>
+<!-- Presenter Notes -->
+</slide>
+      <slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>What you should deliver and why</h2>
+  </hgroup>
+  <article>
+    <ol>
+<li>The raw data: because it&#39;s the most trustable source.</li>
+<li>A tidy data set: because it is directly processable, more on this later.</li>
+<li>A code book describing each variable and its values in the tidy data set: it reduces errors, helps understanding, enforces reproducibility.</li>
+<li>An <strong>explicit</strong> and <strong>exact</strong> recipe you used to go from 1 -&gt; 2,3</li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="" id="slide-5" style="background:;">
   <hgroup>
     <h2>The raw data</h2>
   </hgroup>
@@ -97,7 +117,20 @@
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-4" style="background:;">
+      <slide class="" id="slide-6" style="background:;">
+  <hgroup>
+    <h2>Example of raw data: file from the plate reader</h2>
+  </hgroup>
+  <article>
+    <p><code>code here</code></p>
+
+<p>As we will see, this is an example of <em>messy</em> data.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="" id="slide-7" style="background:;">
   <hgroup>
     <h2>Raw means:</h2>
   </hgroup>
@@ -108,13 +141,35 @@
 <li>Data were not summarised</li>
 </ol>
 
-<p>If manipulated data is reported as raw, the statistician has to perform an extra autopsy to find out what went wrong.</p>
+<p>If manipulated data is reported as raw, the statistician has to perform an
+autopsy to find out what went wrong.</p>
+
+<p>Autopsies are <em>as fun as being hit by a (large) truck, with the downside of
+not being a fast process</em> (quotation).</p>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-5" style="background:;">
+      <slide class="" id="slide-8" style="background:;">
+  <hgroup>
+    <h2>Tidy data set: why</h2>
+  </hgroup>
+  <article>
+    <p>Tidy data are easy to clean and analyse.</p>
+
+<p>There is no need to reinvent the wheel for each new dataset.</p>
+
+<p><em>The development of tidy data has been driven by my struggles working with
+real-world datasets, which are often organised in bizarre ways. I have spent
+countless hours struggling to get these datasets organised in a way that
+makes data analysis possible, let alone easy.</em> Hadley Wickham</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="" id="slide-9" style="background:;">
   <hgroup>
     <h2>Tidy data set</h2>
   </hgroup>
@@ -124,21 +179,113 @@
 <ol>
 <li>Measured variables on the columns</li>
 <li>Single observations of the variables on the rows</li>
+<li>Different tables for different types of variables</li>
 </ol>
 
-<p>Moreover, use different tables for different types of variables (no Excel worksheet) and use ids to link different tables.</p>
+<p>ON point 3: (<strong>no</strong> Excel Worksheets) and use ids to link different tables.</p>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-      <slide class="" id="slide-6" style="background:;">
+      <slide class="" id="slide-10" style="background:;">
   <hgroup>
-    <h2>Example of a tidy data set</h2>
+    <h2>Example of data, I: patient features</h2>
   </hgroup>
   <article>
-    <p>Observation of incidence of diabetes Clinical observation</p>
+    <p>Date of birth is recorded using a predefinite and consistent way.
+Mixing <code>1979-01-16</code> with <code>20-09-1984</code> or <code>20-09-84</code> or <code>200984</code> or
+<code>20 September 1984</code> makes the analysis impossible. Similarly for the
+sex.</p>
 
+<p>The <code>id</code> column identifies the patient and will be used to link with
+the next tables.</p>
+
+
+<div style='float:left;width:48%;' class='centered'>
+  <p><strong>Messy:</strong></p>
+
+<pre><code>##   id        dob male female
+## 1 25 1979-01-16  yes     no
+## 2 64 1984-09-20   no    yes
+</code></pre>
+
+
+</div>
+<div style='float:right;width:48%;'>
+  <p><strong>Tidy:</strong></p>
+
+<pre><code>##   id        dob sex
+## 1 25 1979-01-16   M
+## 2 64 1984-09-20   F
+</code></pre>
+
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="" id="slide-11" style="background:;">
+  <hgroup>
+    <h2>Example of data, II: virology diagnosis</h2>
+  </hgroup>
+  <article>
+    <p>This table reports the results of virology tests in the for. The <code>id</code>
+column identifies the patient linking to the previous table.</p>
+
+
+<div style='float:left;width:48%;' class='centered'>
+  <pre><code>##   id results_HIV results_HCV
+## 1 25        3100       45000
+## 2 64           0       85000
+</code></pre>
+
+<hr>
+
+<p>Messy: the analysts would need to rewrite the dataset adapt their tool if, say, another test
+were added.</p>
+
+
+</div>
+<div style='float:right;width:48%;'>
+  <pre><code>##   id test result
+## 1 25  HIV   3100
+## 2 25  HCV  45000
+## 3 64  HIV      0
+## 4 64  HCV  85000
+</code></pre>
+
+<hr>
+
+<p>Tidy: if more observation were added</p>
+
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="" id="slide-12" style="background:;">
+  <hgroup>
+    <h2>Example of a messy data set: plate reader</h2>
+  </hgroup>
+  <article>
+    <pre><code>h.setFormatter(f)
+sholog.addHandler(h)
+sholog.info(&#39; &#39;.join(sys.argv))
+
+in_stem = &#39;.&#39;.join(os.path.split(options.b)[1].split(&#39;.&#39;)[:-1])
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="" id="slide-13" style="background:;">
+  <hgroup>
+    
+  </hgroup>
+  <article>
+    
   </article>
   <!-- Presenter Notes -->
 </slide>
@@ -157,6 +304,20 @@
 <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
 <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery-1.7.min.js"><\/script>')</script>
 <!-- Load Javascripts for Widgets -->
+<!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script> -->
+<script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
+</script>
 <!-- LOAD HIGHLIGHTER JS FILES -->
 <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>

@@ -1,38 +1,65 @@
 ---
 title       : Data sharing policy
-subtitle    : 
-author      : 
-job         : 
+subtitle    : Adapted from "How to share data with a statistician"
+author      : CM OZ
+job         : Institute of Medical Virology, University of Zurich
 framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
 highlighter : highlight.js  # {highlight.js, prettify, highlight}
 hitheme     : tomorrow      # 
-widgets     : []            # {mathjax, quiz, bootstrap}
+widgets     : [mathjax]     # {mathjax, quiz, bootstrap}
 mode        : selfcontained # {standalone, draft}
 ---
 
-# Title
-Adapted from [How to share data with a statistician](https://github.com/jtleek/datasharing) by Jeff Leek
+```{r setup, echo=FALSE}
+messy_personal = data.frame(id=c(25, 64), dob=c('1979-01-16', '1984-09-20'),
+                            male=c('yes', 'no'), female=c('no', 'yes'))
+
+messy_results = data.frame(id=c(25, 64), results_HIV=c(3100, 0),
+                           results_HCV=c(45000, 85000))
+
+tidy_personal = data.frame(id=c(25, 64), dob=c('1979-01-16', '1984-09-20'),
+                              sex=c('M', 'F'))
+
+tidy_results = data.frame(id=c(25, 25, 64, 64),
+                          test = rep(c('HIV', 'HCV'), 2),
+                          result = c(3100, 45000, 0, 85000))
+```
+
+
+# Introduction
+
+Adaptation of
+[How to share data with a statistician](https://github.com/jtleek/datasharing)
+by Jeff Leek
+
+Available on [GitHub](https://github.com/ozagordi/DataSharingPolicy)
 
 ---
 
 ## Why prescribe how to share data
 
-1. Because it influences speed (and speed matters)
-2. Helps you and the statistician better understanding data
-3. Reduces errors and iterations (did we say speed matters?)
-4. Improves reproducibility
-5. Helps communicating
-6. Makes the life of the statistician **much** easier
- 
+**Chiefly, because it takes more time to make sense of messy data.**
+
+Moreover:
+
+1. Reduces errors and iterations (and more iterations means more time)
+2. Improves reproducibility (should your analysis be questioned)
+3. Helps communicating
+
+--- &vcenter
+
+## ..and above all
+
+### It makes the life of the statistician much easier
+
 ---
 
 ## What you should deliver and why
 
-
 1. The raw data: because it's the most trustable source.
 2. A tidy data set: because it is directly processable, more on this later.
 3. A code book describing each variable and its values in the tidy data set: it reduces errors, helps understanding, enforces reproducibility.
-4. An explicit and exact recipe you used to go from 1 -> 2,3
+4. An **explicit** and **exact** recipe you used to go from 1 -> 2,3
 
 ---
 
@@ -47,15 +74,40 @@ Examples:
 
 ---
 
+## Example of raw data: file from the plate reader
+
+`code here`
+
+As we will see, this is an example of _messy_ data.
+
+---
+
 ## Raw means:
 
 1. No software analysis
 2. No manipulation/removal of data
 3. Data were not summarised
 
-If manipulated data is reported as raw, the statistician has to perform an extra autopsy to find out what went wrong.
+If manipulated data is reported as raw, the statistician has to perform an
+autopsy to find out what went wrong.
+
+Autopsies are _as fun as being hit by a (large) truck, with the downside of
+not being a fast process_ (quotation).
 
 ---
+
+## Tidy data set: why
+
+Tidy data are easy to clean and analyse.
+
+There is no need to reinvent the wheel for each new dataset.
+
+_The development of tidy data has been driven by my struggles working with
+real-world datasets, which are often organised in bizarre ways. I have spent
+countless hours struggling to get these datasets organised in a way that
+makes data analysis possible, let alone easy._ Hadley Wickham
+
+--- 
 
 ## Tidy data set
 
@@ -63,15 +115,75 @@ A tidy data set follows two fundamental principles:
 
 1. Measured variables on the columns
 2. Single observations of the variables on the rows
+3. Different tables for different types of variables
 
-Moreover, use different tables for different types of variables (no Excel worksheet) and use ids to link different tables.
+ON point 3: (**no** Excel Worksheets) and use ids to link different tables.
+
+--- &twocol w1:50% w2:50%
+
+## Example of data, I: patient features
+
+Date of birth is recorded using a predefinite and consistent way.
+Mixing `1979-01-16` with `20-09-1984` or `20-09-84` or `200984` or
+`20 September 1984` makes the analysis impossible. Similarly for the
+sex.
+
+The `id` column identifies the patient and will be used to link with
+the next tables.
+
+
+***left
+
+**Messy:**
+```{r dob_messy, echo=FALSE}
+messy_personal
+```
+
+***right
+
+**Tidy:**
+```{r dob_tidy, echo=FALSE}
+tidy_personal
+```
+
+--- &twocol w1:50% w2:50%
+
+## Example of data, II: virology diagnosis
+This table reports the results of virology tests in the for. The `id`
+column identifies the patient linking to the previous table.
+
+***left
+
+```{r res_messy, echo=FALSE}
+messy_results
+```
+
+***
+Messy: the analysts would need to rewrite the dataset adapt their tool if, say, another test
+were added.
+
+***right
+
+```{r res_tidy, echo=FALSE}
+tidy_results
+```
+
+***
+Tidy: if more observation were added
 
 ---
 
-## Example of a tidy data set
+## Example of a messy data set: plate reader
 
-Observation of incidence of diabetes Clinical observation
+    h.setFormatter(f)
+    sholog.addHandler(h)
+    sholog.info(' '.join(sys.argv))
+
+    in_stem = '.'.join(os.path.split(options.b)[1].split('.')[:-1])
 
 
+---
 
+## Visualisation
 
+The tidy dataset is not meant to be visualised.
