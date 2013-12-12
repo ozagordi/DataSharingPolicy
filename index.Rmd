@@ -1,30 +1,33 @@
 ---
 title       : Data sharing policy
 subtitle    : Adapted from "How to share data with a statistician"
-author      : CM OZ
+author      : Carsten & Osvaldo
 job         : Institute of Medical Virology, University of Zurich
 framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
 highlighter : highlight.js  # {highlight.js, prettify, highlight}
 hitheme     : tomorrow      # 
 widgets     : [mathjax]     # {mathjax, quiz, bootstrap}
-mode        : selfcontained # {standalone, draft}
+mode        : selfcontained # {selfcontained, standalone, draft}
 ---
 
 ```{r setup, echo=FALSE}
-messy_personal = data.frame(id=c(25, 64), dob=c('1979-01-16', '1984-09-20'),
-                            male=c('yes', 'no'), female=c('no', 'yes'))
+messy_personal = data.frame(id=c(25, 64), dob=c('1979-01-16', '20 sep 1984'),
+                            male=c('yes', ''), female=c('', 'y'))
 
-messy_results = data.frame(id=c(25, 64), results_HIV=c(3100, 0),
-                           results_HCV=c(45000, 85000))
+messy_results = data.frame(id=c(25, 64), HIV=c(3100, 0),
+                           HCV=c(45000, 85000))
 
-tidy_personal = data.frame(id=c(25, 64), dob=c('1979-01-16', '1984-09-20'),
-                              sex=c('M', 'F'))
+tidy_personal = data.frame(id=c(25, 64),
+                           date_of_birth=c('1979-01-16', '1984-09-20'),
+                           sex=c('M', 'F'))
 
 tidy_results = data.frame(id=c(25, 25, 64, 64),
-                          test = rep(c('HIV', 'HCV'), 2),
-                          result = c(3100, 45000, 0, 85000))
-```
+                          test=rep(c('HIV', 'HCV'), 2),
+                          viral_load=c(3100, 45000, 0, 85000))
 
+JRCSF_all_excerpt <-
+  read.csv("~/Dropbox/Documents/Talks/DataSharingPolicy/JRCSF_all_excerpt.csv")
+```
 
 # Introduction
 
@@ -76,9 +79,9 @@ Examples:
 
 ## Example of raw data: file from the plate reader
 
-`code here`
-
 As we will see, this is an example of _messy_ data.
+
+![Plate reader](figures/Pico_screenshot.png)
 
 ---
 
@@ -91,8 +94,10 @@ As we will see, this is an example of _messy_ data.
 If manipulated data is reported as raw, the statistician has to perform an
 autopsy to find out what went wrong.
 
-Autopsies are _as fun as being hit by a (large) truck, with the downside of
-not being a fast process_ (quotation).
+Autopsies are
+
+> as fun as being hit by a (large) truck, with the downside of
+> not being a fast process.
 
 ---
 
@@ -102,10 +107,12 @@ Tidy data are easy to clean and analyse.
 
 There is no need to reinvent the wheel for each new dataset.
 
-_The development of tidy data has been driven by my struggles working with
-real-world datasets, which are often organised in bizarre ways. I have spent
-countless hours struggling to get these datasets organised in a way that
-makes data analysis possible, let alone easy._ Hadley Wickham
+> The development of tidy data has been driven by my struggles working with
+> real-world datasets, which are often organised in bizarre ways. I have spent
+> countless hours struggling to get these datasets organised in a way that
+> makes data analysis possible, let alone easy. (Hadley Wickham)
+
+#### Tidy datasets are not _pretty_ datasets. They are not meant to be visualised.
 
 --- 
 
@@ -117,73 +124,91 @@ A tidy data set follows two fundamental principles:
 2. Single observations of the variables on the rows
 3. Different tables for different types of variables
 
-ON point 3: (**no** Excel Worksheets) and use ids to link different tables.
+On point 3: (**no** Excel Worksheets) and use unique identifiers to link
+different tables.
 
 --- &twocol w1:50% w2:50%
 
-## Example of data, I: patient features
-
-Date of birth is recorded using a predefinite and consistent way.
-Mixing `1979-01-16` with `20-09-1984` or `20-09-84` or `200984` or
-`20 September 1984` makes the analysis impossible. Similarly for the
-sex.
+## Toy example: patient features
 
 The `id` column identifies the patient and will be used to link with
 the next tables.
 
+*** left
 
-***left
-
-**Messy:**
+#### Messy
 ```{r dob_messy, echo=FALSE}
 messy_personal
 ```
 
-***right
+Variables are listed on the columns rather than on the row. Dates and sex are
+reported inconsistently.
 
-**Tidy:**
+*** right
+
+#### Tidy
 ```{r dob_tidy, echo=FALSE}
 tidy_personal
 ```
 
+Dates are reported in a consistent format `YYYY-MM-YY`, sex is now a variable
+(reported on the column) and reported consistently (initial, capitalised).
+
 --- &twocol w1:50% w2:50%
 
-## Example of data, II: virology diagnosis
-This table reports the results of virology tests in the for. The `id`
-column identifies the patient linking to the previous table.
+## Toy example: virology diagnosis
+This table reports results of some virology tests. The `id` column identifies
+the patient so it can be used to link the previous table.
 
-***left
+*** left
 
+#### Messy
 ```{r res_messy, echo=FALSE}
 messy_results
 ```
+The analysts would need to adapt their tool if, say, another test were added.
 
-***
-Messy: the analysts would need to rewrite the dataset adapt their tool if, say, another test
-were added.
+*** right
 
-***right
-
+#### Tidy
 ```{r res_tidy, echo=FALSE}
 tidy_results
 ```
-
-***
-Tidy: if more observation were added
+Easier to parse and analyse.
 
 ---
 
-## Example of a messy data set: plate reader
+## Excerpt of "JRCSF all.pzf""
 
-    h.setFormatter(f)
-    sholog.addHandler(h)
-    sholog.info(' '.join(sys.argv))
-
-    in_stem = '.'.join(os.path.split(options.b)[1].split('.')[:-1])
-
+![JRCSF excerpt](figures/JRCSF_screenshot.png)
 
 ---
 
-## Visualisation
+## Excerpt of "JRCSF all.pzf""
 
-The tidy dataset is not meant to be visualised.
+![JRCSF excerpt](figures/JRCSF_screenshot_1.png)
+
+---
+
+## Excerpt of "JRCSF all.pzf""
+
+![JRCSF excerpt](figures/JRCSF_screenshot_2.png)
+
+---
+
+## Excerpt of "JRCSF all.pzf""
+
+![JRCSF excerpt](figures/JRCSF_screenshot_3.png)
+
+---
+
+## Excerpt of "JRCSF all.pzf""
+
+![JRCSF excerpt](figures/JRCSF_screenshot_4.png)
+
+---
+
+## Excerpt of "JRCSF all.pzf""
+
+![JRCSF excerpt](figures/JRCSF_screenshot_5.png)
+

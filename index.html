@@ -4,7 +4,7 @@
   <title>Data sharing policy</title>
   <meta charset="utf-8">
   <meta name="description" content="Data sharing policy">
-  <meta name="author" content="CM OZ">
+  <meta name="author" content="Carsten &amp; Osvaldo">
   <meta name="generator" content="slidify" />
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta http-equiv="X-UA-Compatible" content="chrome=1">
@@ -34,7 +34,7 @@
       <hgroup class="auto-fadein">
         <h1>Data sharing policy</h1>
         <h2>Adapted from &quot;How to share data with a statistician&quot;</h2>
-        <p>CM OZ<br/>Institute of Medical Virology, University of Zurich</p>
+        <p>Carsten &amp; Osvaldo<br/>Institute of Medical Virology, University of Zurich</p>
       </hgroup>
           </slide>
 
@@ -122,9 +122,9 @@ by Jeff Leek</p>
     <h2>Example of raw data: file from the plate reader</h2>
   </hgroup>
   <article>
-    <p><code>code here</code></p>
+    <p>As we will see, this is an example of <em>messy</em> data.</p>
 
-<p>As we will see, this is an example of <em>messy</em> data.</p>
+<p><img src="figures/Pico_screenshot.png" alt="Plate reader"></p>
 
   </article>
   <!-- Presenter Notes -->
@@ -144,8 +144,12 @@ by Jeff Leek</p>
 <p>If manipulated data is reported as raw, the statistician has to perform an
 autopsy to find out what went wrong.</p>
 
-<p>Autopsies are <em>as fun as being hit by a (large) truck, with the downside of
-not being a fast process</em> (quotation).</p>
+<p>Autopsies are</p>
+
+<blockquote>
+<p>as fun as being hit by a (large) truck, with the downside of
+not being a fast process.</p>
+</blockquote>
 
   </article>
   <!-- Presenter Notes -->
@@ -160,10 +164,14 @@ not being a fast process</em> (quotation).</p>
 
 <p>There is no need to reinvent the wheel for each new dataset.</p>
 
-<p><em>The development of tidy data has been driven by my struggles working with
+<blockquote>
+<p>The development of tidy data has been driven by my struggles working with
 real-world datasets, which are often organised in bizarre ways. I have spent
 countless hours struggling to get these datasets organised in a way that
-makes data analysis possible, let alone easy.</em> Hadley Wickham</p>
+makes data analysis possible, let alone easy. (Hadley Wickham)</p>
+</blockquote>
+
+<h4>Tidy datasets are not <em>pretty</em> datasets. They are not meant to be visualised.</h4>
 
   </article>
   <!-- Presenter Notes -->
@@ -182,7 +190,8 @@ makes data analysis possible, let alone easy.</em> Hadley Wickham</p>
 <li>Different tables for different types of variables</li>
 </ol>
 
-<p>ON point 3: (<strong>no</strong> Excel Worksheets) and use ids to link different tables.</p>
+<p>On point 3: (<strong>no</strong> Excel Worksheets) and use unique identifiers to link
+different tables.</p>
 
   </article>
   <!-- Presenter Notes -->
@@ -190,35 +199,36 @@ makes data analysis possible, let alone easy.</em> Hadley Wickham</p>
 
       <slide class="" id="slide-10" style="background:;">
   <hgroup>
-    <h2>Example of data, I: patient features</h2>
+    <h2>Toy example: patient features</h2>
   </hgroup>
   <article>
-    <p>Date of birth is recorded using a predefinite and consistent way.
-Mixing <code>1979-01-16</code> with <code>20-09-1984</code> or <code>20-09-84</code> or <code>200984</code> or
-<code>20 September 1984</code> makes the analysis impossible. Similarly for the
-sex.</p>
-
-<p>The <code>id</code> column identifies the patient and will be used to link with
+    <p>The <code>id</code> column identifies the patient and will be used to link with
 the next tables.</p>
 
 
 <div style='float:left;width:48%;' class='centered'>
-  <p><strong>Messy:</strong></p>
+  <h4>Messy</h4>
 
-<pre><code>##   id        dob male female
-## 1 25 1979-01-16  yes     no
-## 2 64 1984-09-20   no    yes
+<pre><code>##   id         dob male female
+## 1 25  1979-01-16  yes       
+## 2 64 20 sep 1984           y
 </code></pre>
+
+<p>Variables are listed on the columns rather than on the row. Dates and sex are
+reported inconsistently.</p>
 
 
 </div>
 <div style='float:right;width:48%;'>
-  <p><strong>Tidy:</strong></p>
+  <h4>Tidy</h4>
 
-<pre><code>##   id        dob sex
-## 1 25 1979-01-16   M
-## 2 64 1984-09-20   F
+<pre><code>##   id date_of_birth sex
+## 1 25    1979-01-16   M
+## 2 64    1984-09-20   F
 </code></pre>
+
+<p>Dates are reported in a consistent format <code>YYYY-MM-YY</code>, sex is now a variable
+(reported on the column) and reported consistently (initial, capitalised).</p>
 
 </div>
   </article>
@@ -227,37 +237,36 @@ the next tables.</p>
 
       <slide class="" id="slide-11" style="background:;">
   <hgroup>
-    <h2>Example of data, II: virology diagnosis</h2>
+    <h2>Toy example: virology diagnosis</h2>
   </hgroup>
   <article>
-    <p>This table reports the results of virology tests in the for. The <code>id</code>
-column identifies the patient linking to the previous table.</p>
+    <p>This table reports results of some virology tests. The <code>id</code> column identifies
+the patient so it can be used to link the previous table.</p>
 
 
 <div style='float:left;width:48%;' class='centered'>
-  <pre><code>##   id results_HIV results_HCV
-## 1 25        3100       45000
-## 2 64           0       85000
+  <h4>Messy</h4>
+
+<pre><code>##   id  HIV   HCV
+## 1 25 3100 45000
+## 2 64    0 85000
 </code></pre>
 
-<hr>
-
-<p>Messy: the analysts would need to rewrite the dataset adapt their tool if, say, another test
-were added.</p>
+<p>The analysts would need to adapt their tool if, say, another test were added.</p>
 
 
 </div>
 <div style='float:right;width:48%;'>
-  <pre><code>##   id test result
-## 1 25  HIV   3100
-## 2 25  HCV  45000
-## 3 64  HIV      0
-## 4 64  HCV  85000
+  <h4>Tidy</h4>
+
+<pre><code>##   id test viral_load
+## 1 25  HIV       3100
+## 2 25  HCV      45000
+## 3 64  HIV          0
+## 4 64  HCV      85000
 </code></pre>
 
-<hr>
-
-<p>Tidy: if more observation were added</p>
+<p>Easier to parse and analyse.</p>
 
 </div>
   </article>
@@ -266,15 +275,10 @@ were added.</p>
 
       <slide class="" id="slide-12" style="background:;">
   <hgroup>
-    <h2>Example of a messy data set: plate reader</h2>
+    <h2>Excerpt of &quot;JRCSF all.pzf&quot;&quot;</h2>
   </hgroup>
   <article>
-    <pre><code>h.setFormatter(f)
-sholog.addHandler(h)
-sholog.info(&#39; &#39;.join(sys.argv))
-
-in_stem = &#39;.&#39;.join(os.path.split(options.b)[1].split(&#39;.&#39;)[:-1])
-</code></pre>
+    <p><img src="figures/JRCSF_screenshot.png" alt="JRCSF excerpt"></p>
 
   </article>
   <!-- Presenter Notes -->
@@ -282,10 +286,55 @@ in_stem = &#39;.&#39;.join(os.path.split(options.b)[1].split(&#39;.&#39;)[:-1])
 
       <slide class="" id="slide-13" style="background:;">
   <hgroup>
-    
+    <h2>Excerpt of &quot;JRCSF all.pzf&quot;&quot;</h2>
   </hgroup>
   <article>
-    
+    <p><img src="figures/JRCSF_screenshot_1.png" alt="JRCSF excerpt"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="" id="slide-14" style="background:;">
+  <hgroup>
+    <h2>Excerpt of &quot;JRCSF all.pzf&quot;&quot;</h2>
+  </hgroup>
+  <article>
+    <p><img src="figures/JRCSF_screenshot_2.png" alt="JRCSF excerpt"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="" id="slide-15" style="background:;">
+  <hgroup>
+    <h2>Excerpt of &quot;JRCSF all.pzf&quot;&quot;</h2>
+  </hgroup>
+  <article>
+    <p><img src="figures/JRCSF_screenshot_3.png" alt="JRCSF excerpt"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="" id="slide-16" style="background:;">
+  <hgroup>
+    <h2>Excerpt of &quot;JRCSF all.pzf&quot;&quot;</h2>
+  </hgroup>
+  <article>
+    <p><img src="figures/JRCSF_screenshot_4.png" alt="JRCSF excerpt"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="" id="slide-17" style="background:;">
+  <hgroup>
+    <h2>Excerpt of &quot;JRCSF all.pzf&quot;&quot;</h2>
+  </hgroup>
+  <article>
+    <p><img src="figures/JRCSF_screenshot_5.png" alt="JRCSF excerpt"></p>
+
   </article>
   <!-- Presenter Notes -->
 </slide>

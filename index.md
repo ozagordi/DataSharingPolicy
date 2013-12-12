@@ -1,15 +1,14 @@
 ---
 title       : Data sharing policy
 subtitle    : Adapted from "How to share data with a statistician"
-author      : CM OZ
+author      : Carsten & Osvaldo
 job         : Institute of Medical Virology, University of Zurich
 framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
 highlighter : highlight.js  # {highlight.js, prettify, highlight}
 hitheme     : tomorrow      # 
 widgets     : [mathjax]     # {mathjax, quiz, bootstrap}
-mode        : selfcontained # {standalone, draft}
+mode        : selfcontained # {selfcontained, standalone, draft}
 ---
-
 
 
 
@@ -64,9 +63,9 @@ Examples:
 
 ## Example of raw data: file from the plate reader
 
-`code here`
-
 As we will see, this is an example of _messy_ data.
+
+![Plate reader](figures/Pico_screenshot.png)
 
 ---
 
@@ -79,8 +78,10 @@ As we will see, this is an example of _messy_ data.
 If manipulated data is reported as raw, the statistician has to perform an
 autopsy to find out what went wrong.
 
-Autopsies are _as fun as being hit by a (large) truck, with the downside of
-not being a fast process_ (quotation).
+Autopsies are
+
+> as fun as being hit by a (large) truck, with the downside of
+> not being a fast process.
 
 ---
 
@@ -90,10 +91,12 @@ Tidy data are easy to clean and analyse.
 
 There is no need to reinvent the wheel for each new dataset.
 
-_The development of tidy data has been driven by my struggles working with
-real-world datasets, which are often organised in bizarre ways. I have spent
-countless hours struggling to get these datasets organised in a way that
-makes data analysis possible, let alone easy._ Hadley Wickham
+> The development of tidy data has been driven by my struggles working with
+> real-world datasets, which are often organised in bizarre ways. I have spent
+> countless hours struggling to get these datasets organised in a way that
+> makes data analysis possible, let alone easy. (Hadley Wickham)
+
+#### Tidy datasets are not _pretty_ datasets. They are not meant to be visualised.
 
 --- 
 
@@ -105,87 +108,109 @@ A tidy data set follows two fundamental principles:
 2. Single observations of the variables on the rows
 3. Different tables for different types of variables
 
-ON point 3: (**no** Excel Worksheets) and use ids to link different tables.
+On point 3: (**no** Excel Worksheets) and use unique identifiers to link
+different tables.
 
 --- &twocol w1:50% w2:50%
 
-## Example of data, I: patient features
-
-Date of birth is recorded using a predefinite and consistent way.
-Mixing `1979-01-16` with `20-09-1984` or `20-09-84` or `200984` or
-`20 September 1984` makes the analysis impossible. Similarly for the
-sex.
+## Toy example: patient features
 
 The `id` column identifies the patient and will be used to link with
 the next tables.
 
+*** left
 
-***left
-
-**Messy:**
-
-```
-##   id        dob male female
-## 1 25 1979-01-16  yes     no
-## 2 64 1984-09-20   no    yes
-```
-
-
-***right
-
-**Tidy:**
+#### Messy
 
 ```
-##   id        dob sex
-## 1 25 1979-01-16   M
-## 2 64 1984-09-20   F
+##   id         dob male female
+## 1 25  1979-01-16  yes       
+## 2 64 20 sep 1984           y
 ```
 
+
+Variables are listed on the columns rather than on the row. Dates and sex are
+reported inconsistently.
+
+*** right
+
+#### Tidy
+
+```
+##   id date_of_birth sex
+## 1 25    1979-01-16   M
+## 2 64    1984-09-20   F
+```
+
+
+Dates are reported in a consistent format `YYYY-MM-YY`, sex is now a variable
+(reported on the column) and reported consistently (initial, capitalised).
 
 --- &twocol w1:50% w2:50%
 
-## Example of data, II: virology diagnosis
-This table reports the results of virology tests in the for. The `id`
-column identifies the patient linking to the previous table.
+## Toy example: virology diagnosis
+This table reports results of some virology tests. The `id` column identifies
+the patient so it can be used to link the previous table.
 
-***left
+*** left
 
-
-```
-##   id results_HIV results_HCV
-## 1 25        3100       45000
-## 2 64           0       85000
-```
-
-
-***
-Messy: the analysts would need to rewrite the dataset adapt their tool if, say, another test
-were added.
-
-***right
-
+#### Messy
 
 ```
-##   id test result
-## 1 25  HIV   3100
-## 2 25  HCV  45000
-## 3 64  HIV      0
-## 4 64  HCV  85000
+##   id  HIV   HCV
+## 1 25 3100 45000
+## 2 64    0 85000
 ```
 
+The analysts would need to adapt their tool if, say, another test were added.
 
-***
-Tidy: if more observation were added
+*** right
+
+#### Tidy
+
+```
+##   id test viral_load
+## 1 25  HIV       3100
+## 2 25  HCV      45000
+## 3 64  HIV          0
+## 4 64  HCV      85000
+```
+
+Easier to parse and analyse.
 
 ---
 
-## Example of a messy data set: plate reader
+## Excerpt of "JRCSF all.pzf""
 
-    h.setFormatter(f)
-    sholog.addHandler(h)
-    sholog.info(' '.join(sys.argv))
-
-    in_stem = '.'.join(os.path.split(options.b)[1].split('.')[:-1])
-
+![JRCSF excerpt](figures/JRCSF_screenshot.png)
 
 ---
+
+## Excerpt of "JRCSF all.pzf""
+
+![JRCSF excerpt](figures/JRCSF_screenshot_1.png)
+
+---
+
+## Excerpt of "JRCSF all.pzf""
+
+![JRCSF excerpt](figures/JRCSF_screenshot_2.png)
+
+---
+
+## Excerpt of "JRCSF all.pzf""
+
+![JRCSF excerpt](figures/JRCSF_screenshot_3.png)
+
+---
+
+## Excerpt of "JRCSF all.pzf""
+
+![JRCSF excerpt](figures/JRCSF_screenshot_4.png)
+
+---
+
+## Excerpt of "JRCSF all.pzf""
+
+![JRCSF excerpt](figures/JRCSF_screenshot_5.png)
+
