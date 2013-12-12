@@ -180,37 +180,117 @@ Easier to parse and analyse.
 
 ---
 
-## Excerpt of "JRCSF all.pzf""
+## Excerpt of `JRCSF all.pzf`
 
 ![JRCSF excerpt](figures/JRCSF_screenshot.png)
 
 ---
 
-## Excerpt of "JRCSF all.pzf""
+## Excerpt of `JRCSF all.pzf`
 
 ![JRCSF excerpt](figures/JRCSF_screenshot_1.png)
 
 ---
 
-## Excerpt of "JRCSF all.pzf""
+## Excerpt of `JRCSF all.pzf`
 
 ![JRCSF excerpt](figures/JRCSF_screenshot_2.png)
 
 ---
 
-## Excerpt of "JRCSF all.pzf""
+## Excerpt of `JRCSF all.pzf`
 
 ![JRCSF excerpt](figures/JRCSF_screenshot_3.png)
 
 ---
 
-## Excerpt of "JRCSF all.pzf""
+## Excerpt of `JRCSF all.pzf`
 
 ![JRCSF excerpt](figures/JRCSF_screenshot_4.png)
 
 ---
 
-## Excerpt of "JRCSF all.pzf""
+## Excerpt of `JRCSF all.pzf`
 
 ![JRCSF excerpt](figures/JRCSF_screenshot_5.png)
+
+---
+
+## Tidy up!
+
+Quite important, remove the space from the file name: `JRCSF all.pzf` becomes
+`JRCSFall.pzf` or `JRCSF_all.pzf`.
+
+Then, applying the principles of tidy data, one has
+
+```
+##   inhibitor assay_n log10_conc inhibition_percent other_info
+## 1   Cd4IgG2       1     1.3979                 99       <NA>
+## 2   Cd4IgG2       1     0.7959                 90       <NA>
+## 3   Cd4IgG2       1     0.1938                 66       <NA>
+```
+
+`...`
+
+```
+##     inhibitor assay_n log10_conc inhibition_percent other_info
+## 117    PGT145       2     -1.010                 76       star
+## 118    PGT145       2     -1.612                 47       star
+## 119    PGT145       2     -2.214                 16       star
+```
+
+
+
+---
+
+## Other resources to share: the code book
+
+The code book contains a more detailed description of what is in the tidy
+dataset.
+
+It should include 
+
+- information about the measured/reported variables (_e.g._ units)
+- whether and how measurements were summarised
+- information about the experimental desing (_e.g._ study design, instrument
+  used, experimenter).
+  
+#### This will be an invaluable resource for writing the paper later!
+
+--- 
+
+## How to code variables
+
+Generally speaking, variables can be:
+
+1. continuous (weight, speed, fluorescence)
+2. ordinal (discrete, but quantitative: low, medium, high)
+3. categorical (no order relation given: male/female, vaccinated/non vaccinated)
+4. missing (only when you don't know what happened, code with `NA`)
+5. censored (missing, but you know more or less why, `NA` and set an 
+   additional column `censored` to `TRUE`)
+
+Do not use anything that would be not kept in a simple text.
+
+--- 
+
+## Reproducibility
+
+One reason why statisticians prefer to write programs/scripts to analyse data
+is that a set of written instructions can be reproduced exactly, unlike a set
+of mouse clicks.
+
+If you don't know a programming language and you need to request/describe an
+analysis, you can use pseudocode: a detailed cooking recipe.
+
+1. Take the file for sample A, analyse it with the program X and save column Y
+2. Repeat for samples B, C, D
+3. Plot mean and standard deviation (or median, or boxplot) as a function of
+   the property Z of the sample that is listed in file W.
+
+[More on reproducibility](http://www.sciencemag.org/content/334/6060/1226)
+
+--- 
+
+## What do you expect from a statistician?
 

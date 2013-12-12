@@ -275,7 +275,7 @@ the patient so it can be used to link the previous table.</p>
 
       <slide class="" id="slide-12" style="background:;">
   <hgroup>
-    <h2>Excerpt of &quot;JRCSF all.pzf&quot;&quot;</h2>
+    <h2>Excerpt of <code>JRCSF all.pzf</code></h2>
   </hgroup>
   <article>
     <p><img src="figures/JRCSF_screenshot.png" alt="JRCSF excerpt"></p>
@@ -286,7 +286,7 @@ the patient so it can be used to link the previous table.</p>
 
       <slide class="" id="slide-13" style="background:;">
   <hgroup>
-    <h2>Excerpt of &quot;JRCSF all.pzf&quot;&quot;</h2>
+    <h2>Excerpt of <code>JRCSF all.pzf</code></h2>
   </hgroup>
   <article>
     <p><img src="figures/JRCSF_screenshot_1.png" alt="JRCSF excerpt"></p>
@@ -297,7 +297,7 @@ the patient so it can be used to link the previous table.</p>
 
       <slide class="" id="slide-14" style="background:;">
   <hgroup>
-    <h2>Excerpt of &quot;JRCSF all.pzf&quot;&quot;</h2>
+    <h2>Excerpt of <code>JRCSF all.pzf</code></h2>
   </hgroup>
   <article>
     <p><img src="figures/JRCSF_screenshot_2.png" alt="JRCSF excerpt"></p>
@@ -308,7 +308,7 @@ the patient so it can be used to link the previous table.</p>
 
       <slide class="" id="slide-15" style="background:;">
   <hgroup>
-    <h2>Excerpt of &quot;JRCSF all.pzf&quot;&quot;</h2>
+    <h2>Excerpt of <code>JRCSF all.pzf</code></h2>
   </hgroup>
   <article>
     <p><img src="figures/JRCSF_screenshot_3.png" alt="JRCSF excerpt"></p>
@@ -319,7 +319,7 @@ the patient so it can be used to link the previous table.</p>
 
       <slide class="" id="slide-16" style="background:;">
   <hgroup>
-    <h2>Excerpt of &quot;JRCSF all.pzf&quot;&quot;</h2>
+    <h2>Excerpt of <code>JRCSF all.pzf</code></h2>
   </hgroup>
   <article>
     <p><img src="figures/JRCSF_screenshot_4.png" alt="JRCSF excerpt"></p>
@@ -330,11 +330,119 @@ the patient so it can be used to link the previous table.</p>
 
       <slide class="" id="slide-17" style="background:;">
   <hgroup>
-    <h2>Excerpt of &quot;JRCSF all.pzf&quot;&quot;</h2>
+    <h2>Excerpt of <code>JRCSF all.pzf</code></h2>
   </hgroup>
   <article>
     <p><img src="figures/JRCSF_screenshot_5.png" alt="JRCSF excerpt"></p>
 
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="" id="slide-18" style="background:;">
+  <hgroup>
+    <h2>Tidy up!</h2>
+  </hgroup>
+  <article>
+    <p>Quite important, remove the space from the file name: <code>JRCSF all.pzf</code> becomes
+<code>JRCSFall.pzf</code> or <code>JRCSF_all.pzf</code>.</p>
+
+<p>Then, applying the principles of tidy data, one has</p>
+
+<pre><code>##   inhibitor assay_n log10_conc inhibition_percent other_info
+## 1   Cd4IgG2       1     1.3979                 99       &lt;NA&gt;
+## 2   Cd4IgG2       1     0.7959                 90       &lt;NA&gt;
+## 3   Cd4IgG2       1     0.1938                 66       &lt;NA&gt;
+</code></pre>
+
+<p><code>...</code></p>
+
+<pre><code>##     inhibitor assay_n log10_conc inhibition_percent other_info
+## 117    PGT145       2     -1.010                 76       star
+## 118    PGT145       2     -1.612                 47       star
+## 119    PGT145       2     -2.214                 16       star
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="" id="slide-19" style="background:;">
+  <hgroup>
+    <h2>Other resources to share: the code book</h2>
+  </hgroup>
+  <article>
+    <p>The code book contains a more detailed description of what is in the tidy
+dataset.</p>
+
+<p>It should include </p>
+
+<ul>
+<li>information about the measured/reported variables (<em>e.g.</em> units)</li>
+<li>whether and how measurements were summarised</li>
+<li>information about the experimental desing (<em>e.g.</em> study design, instrument
+used, experimenter).</li>
+</ul>
+
+<h4>This will be an invaluable resource for writing the paper later!</h4>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="" id="slide-20" style="background:;">
+  <hgroup>
+    <h2>How to code variables</h2>
+  </hgroup>
+  <article>
+    <p>Generally speaking, variables can be:</p>
+
+<ol>
+<li>continuous (weight, speed, fluorescence)</li>
+<li>ordinal (discrete, but quantitative: low, medium, high)</li>
+<li>categorical (no order relation given: male/female, vaccinated/non vaccinated)</li>
+<li>missing (only when you don&#39;t know what happened, code with <code>NA</code>)</li>
+<li>censored (missing, but you know more or less why, <code>NA</code> and set an 
+additional column <code>censored</code> to <code>TRUE</code>)</li>
+</ol>
+
+<p>Do not use anything that would be not kept in a simple text.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="" id="slide-21" style="background:;">
+  <hgroup>
+    <h2>Reproducibility</h2>
+  </hgroup>
+  <article>
+    <p>One reason why statisticians prefer to write programs/scripts to analyse data
+is that a set of written instructions can be reproduced exactly, unlike a set
+of mouse clicks.</p>
+
+<p>If you don&#39;t know a programming language and you need to request/describe an
+analysis, you can use pseudocode: a detailed cooking recipe.</p>
+
+<ol>
+<li>Take the file for sample A, analyse it with the program X and save column Y</li>
+<li>Repeat for samples B, C, D</li>
+<li>Plot mean and standard deviation (or median, or boxplot) as a function of
+the property Z of the sample that is listed in file W.</li>
+</ol>
+
+<p><a href="http://www.sciencemag.org/content/334/6060/1226">More on reproducibility</a></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+      <slide class="" id="slide-22" style="background:;">
+  <hgroup>
+    <h2>What do you expect from a statistician?</h2>
+  </hgroup>
+  <article>
+    
   </article>
   <!-- Presenter Notes -->
 </slide>
