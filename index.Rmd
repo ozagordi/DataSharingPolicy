@@ -29,20 +29,20 @@ JRCSF_all_excerpt <-
   read.csv("~/Dropbox/Documents/Talks/DataSharingPolicy/JRCSF_all_excerpt.csv")
 ```
 
-# Introduction
+## Introduction
 
-Adaptation of
+These slides are an adaptation of
 [How to share data with a statistician](https://github.com/jtleek/datasharing)
 by Jeff Leek
 
-Available on [GitHub](https://github.com/ozagordi/DataSharingPolicy)
+Code available on [GitHub](https://github.com/ozagordi/DataSharingPolicy)
 
 ---
 
 ## Why prescribe how to share data
 
-**Chiefly, because it takes more time to make sense of messy data.**
-
+#### Chiefly, because it takes more time to make sense of messy data.
+***
 Moreover:
 
 1. Reduces errors and iterations (and more iterations means more time)
@@ -62,7 +62,7 @@ Moreover:
 1. The raw data: because it's the most trustable source.
 2. A tidy data set: because it is directly processable, more on this later.
 3. A code book describing each variable and its values in the tidy data set: it reduces errors, helps understanding, enforces reproducibility.
-4. An **explicit** and **exact** recipe you used to go from 1 -> 2,3
+4. An _explicit_ and _exact_ recipe you used to go from 1 -> 2,3
 
 ---
 
@@ -70,8 +70,8 @@ Moreover:
 
 Examples:
 
-1. FACS output (the `.fcs` file, before using Flowjow or anything else).
-2. The `.csv` or `.txt` file from the plate reader (**before** loading into Excel).
+1. FACS output (the `.fcs` file, before using Flowjo or anything else).
+2. The `.csv` or `.txt` file from the plate reader (*before* loading into Excel).
 3. Microscopy `.tiff` images.
 4. NGS sequences in `.fastq` format
 
@@ -99,6 +99,8 @@ Autopsies are
 > as fun as being hit by a (large) truck, with the downside of
 > not being a fast process.
 
+> (adapted)
+
 ---
 
 ## Tidy data set: why
@@ -110,21 +112,23 @@ There is no need to reinvent the wheel for each new dataset.
 > The development of tidy data has been driven by my struggles working with
 > real-world datasets, which are often organised in bizarre ways. I have spent
 > countless hours struggling to get these datasets organised in a way that
-> makes data analysis possible, let alone easy. (Hadley Wickham)
+> makes data analysis possible, let alone easy.
+
+> (Hadley Wickham)
 
 #### Tidy datasets are not _pretty_ datasets. They are not meant to be visualised.
 
 --- 
 
-## Tidy data set
+## Tidy dataset
 
-A tidy data set follows two fundamental principles:
+A tidy dataset follows three fundamental principles:
 
 1. Measured variables on the columns
 2. Single observations of the variables on the rows
 3. Different tables for different types of variables
 
-On point 3: (**no** Excel Worksheets) and use unique identifiers to link
+On point 3: **no** Excel Worksheets and use unique identifiers to link
 different tables.
 
 --- &twocol w1:50% w2:50%
@@ -132,7 +136,7 @@ different tables.
 ## Toy example: patient features
 
 The `id` column identifies the patient and will be used to link with
-the next tables.
+the next tables (first column is row number).
 
 *** left
 
@@ -210,14 +214,15 @@ Easier to parse and analyse.
 
 ## Excerpt of `JRCSF all.pzf`
 
-![JRCSF excerpt](figures/JRCSF_screenshot_5.png)
+![JRCSF excerpt](figures/JRCSF_screenshot_5b.png)
 
 ---
 
 ## Tidy up!
 
 Quite important, remove the space from the file name: `JRCSF all.pzf` becomes
-`JRCSFall.pzf` or `JRCSF_all.pzf`.
+`JRCSFall.pzf` or `JRCSF_all.pzf`. Statistician often use linux for data
+analysis and there empty spaces mark the beginning of a new command.
 
 Then, applying the principles of tidy data, one has
 ```{r jrcsf_tidy, echo=FALSE}
@@ -258,7 +263,7 @@ Generally speaking, variables can be:
 5. censored (missing, but you know more or less why, `NA` and set an 
    additional column `censored` to `TRUE`)
 
-Do not use anything that would be not kept in a simple text.
+Do not use anything that would not be kept in a simple text.
 
 --- 
 
@@ -278,7 +283,7 @@ analysis, you can use pseudocode: a detailed cooking recipe.
 
 [More on reproducibility](http://www.sciencemag.org/content/334/6060/1226)
 
---- 
+--- &vcenter
+## 
 
-## What do you expect from a statistician?
-
+![merci](figures/merci.png)
