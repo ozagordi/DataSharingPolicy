@@ -46,7 +46,7 @@
   <article>
     <p>These slides are an adaptation of
 <a href="https://github.com/jtleek/datasharing">How to share data with a statistician</a>
-by Jeff Leek</p>
+by Jeff Leek (Johns Hopkins Bloomberg School of Public Health).</p>
 
 <p>Code available on <a href="https://github.com/ozagordi/DataSharingPolicy">GitHub</a></p>
 
@@ -93,9 +93,13 @@ by Jeff Leek</p>
     <ol>
 <li>The raw data: because it&#39;s the most trustable source.</li>
 <li>A tidy data set: because it is directly processable, more on this later.</li>
-<li>A code book describing each variable and its values in the tidy data set: it reduces errors, helps understanding, enforces reproducibility.</li>
-<li>An <em>explicit</em> and <em>exact</em> recipe you used to go from 1 -&gt; 2,3</li>
+<li>A code book describing each variable and its values in the tidy data set:
+it reduces errors, helps understanding, enforces reproducibility.</li>
+<li>An <em>explicit</em> and <em>exact</em> recipe you used to go from 1 -&gt; 2,3.</li>
 </ol>
+
+<p>Raw data are often messy, we can&#39;t do much for them. But when we derive other
+data from them we can try to make it in a tidy way.</p>
 
   </article>
   <!-- Presenter Notes -->
@@ -191,12 +195,12 @@ makes data analysis possible, let alone easy.</p>
     <p>A tidy dataset follows three fundamental principles:</p>
 
 <ol>
-<li>Measured variables on the columns</li>
-<li>Single observations of the variables on the rows</li>
+<li>Measured variables in the columns</li>
+<li>Single observations of the variables in the rows</li>
 <li>Different tables for different types of variables</li>
 </ol>
 
-<p>On point 3: (<strong>no</strong> Excel Worksheets) and use unique identifiers to link
+<p>On point 3: <strong>no</strong> Excel Worksheets and use unique identifiers to link
 different tables.</p>
 
   </article>
@@ -220,7 +224,7 @@ the next tables (first column is row number).</p>
 ## 2 64 20 sep 1984           y
 </code></pre>
 
-<p>Variables are listed on the columns rather than on the row. Dates and sex are
+<p>Variables are listed in the columns rather than in the row. Dates and sex are
 reported inconsistently.</p>
 
 
@@ -234,7 +238,7 @@ reported inconsistently.</p>
 </code></pre>
 
 <p>Dates are reported in a consistent format <code>YYYY-MM-YY</code>, sex is now a variable
-(reported on the column) and reported consistently (initial, capitalised).</p>
+(reported in the column) and reported consistently (initial, capitalised).</p>
 
 </div>
   </article>
@@ -273,6 +277,9 @@ the patient so it can be used to link the previous table.</p>
 </code></pre>
 
 <p>Easier to parse and analyse.</p>
+
+<p><em>parse: analyse (a string or text) into logical syntactic components</em> (Oxford
+Dictionary)</p>
 
 </div>
   </article>
@@ -350,7 +357,7 @@ the patient so it can be used to link the previous table.</p>
     <h2>Tidy up!</h2>
   </hgroup>
   <article>
-    <p>Quite important, remove the space from the file name: <code>JRCSF all.pzf</code> becomes
+    <p>Please, remove the space from the file name: <code>JRCSF all.pzf</code> becomes
 <code>JRCSFall.pzf</code> or <code>JRCSF_all.pzf</code>. Statistician often use linux for data
 analysis and there empty spaces mark the beginning of a new command.</p>
 
@@ -387,7 +394,7 @@ dataset.</p>
 <ul>
 <li>information about the measured/reported variables (<em>e.g.</em> units)</li>
 <li>whether and how measurements were summarised</li>
-<li>information about the experimental desing (<em>e.g.</em> study design, instrument
+<li>information about the experimental design (<em>e.g.</em> study design, instrument
 used, experimenter).</li>
 </ul>
 

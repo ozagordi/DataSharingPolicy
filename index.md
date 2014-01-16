@@ -17,7 +17,7 @@ mode        : selfcontained # {selfcontained, standalone, draft}
 
 These slides are an adaptation of
 [How to share data with a statistician](https://github.com/jtleek/datasharing)
-by Jeff Leek
+by Jeff Leek (Johns Hopkins Bloomberg School of Public Health).
 
 Code available on [GitHub](https://github.com/ozagordi/DataSharingPolicy)
 
@@ -45,8 +45,12 @@ Moreover:
 
 1. The raw data: because it's the most trustable source.
 2. A tidy data set: because it is directly processable, more on this later.
-3. A code book describing each variable and its values in the tidy data set: it reduces errors, helps understanding, enforces reproducibility.
-4. An _explicit_ and _exact_ recipe you used to go from 1 -> 2,3
+3. A code book describing each variable and its values in the tidy data set:
+   it reduces errors, helps understanding, enforces reproducibility.
+4. An _explicit_ and _exact_ recipe you used to go from 1 -> 2,3.
+
+Raw data are often messy, we can't do much for them. But when we derive other
+data from them we can try to make it in a tidy way.
 
 ---
 
@@ -108,11 +112,11 @@ There is no need to reinvent the wheel for each new dataset.
 
 A tidy dataset follows three fundamental principles:
 
-1. Measured variables on the columns
-2. Single observations of the variables on the rows
+1. Measured variables in the columns
+2. Single observations of the variables in the rows
 3. Different tables for different types of variables
 
-On point 3: (**no** Excel Worksheets) and use unique identifiers to link
+On point 3: **no** Excel Worksheets and use unique identifiers to link
 different tables.
 
 --- &twocol w1:50% w2:50%
@@ -133,7 +137,7 @@ the next tables (first column is row number).
 ```
 
 
-Variables are listed on the columns rather than on the row. Dates and sex are
+Variables are listed in the columns rather than in the row. Dates and sex are
 reported inconsistently.
 
 *** right
@@ -148,7 +152,7 @@ reported inconsistently.
 
 
 Dates are reported in a consistent format `YYYY-MM-YY`, sex is now a variable
-(reported on the column) and reported consistently (initial, capitalised).
+(reported in the column) and reported consistently (initial, capitalised).
 
 --- &twocol w1:50% w2:50%
 
@@ -181,6 +185,9 @@ The analysts would need to adapt their tool if, say, another test were added.
 ```
 
 Easier to parse and analyse.
+
+_parse: analyse (a string or text) into logical syntactic components_ (Oxford
+Dictionary)
 
 ---
 
@@ -222,7 +229,7 @@ Easier to parse and analyse.
 
 ## Tidy up!
 
-Quite important, remove the space from the file name: `JRCSF all.pzf` becomes
+Please, remove the space from the file name: `JRCSF all.pzf` becomes
 `JRCSFall.pzf` or `JRCSF_all.pzf`. Statistician often use linux for data
 analysis and there empty spaces mark the beginning of a new command.
 
@@ -257,7 +264,7 @@ It should include
 
 - information about the measured/reported variables (_e.g._ units)
 - whether and how measurements were summarised
-- information about the experimental desing (_e.g._ study design, instrument
+- information about the experimental design (_e.g._ study design, instrument
   used, experimenter).
   
 #### This will be an invaluable resource for writing the paper later!
